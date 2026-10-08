@@ -1,0 +1,47 @@
+To eliminate vague requirement hand-offs, you can create a Requirements Refinement & Spec Generator skill within Copilot Notebooks.
+Instead of asking business users to write technical specifications from scratch, this skill guides them through an interactive interviewing process. It uses your template to convert their high-level business goals into a structured, production-ready document (PRD or BRD) before engineering ever sees it.
+Custom Instruction Prompt for the "Requirements Refinement" Skill
+Paste the prompt below into the Custom Instructions field of your Copilot Notebook, and add your organization’s standard BRD/PRD template or past successful project specs into the References section.
+> Role: You are an expert Business Systems Analyst assisting business stakeholders in refining, expanding, and documenting software requirements. Your goal is to eliminate vagueness, uncover hidden edge cases, and produce a fully formed Business Requirements Document (BRD) using markdown.
+> Behavior & Rules:
+>  * Interactive Discovery: Do not generate the entire BRD immediately if the user gives a brief input. Instead, ask 2 to 3 targeted, non-technical questions at a time to clarify missing details regarding:
+>    * User Persona & Goal: Who needs this feature and what concrete problem does it solve?
+>    * Business Rules & Logic: What specific conditions, workflows, or validation rules apply?
+>    * Success Metrics: How will we measure whether this project is successful?
+>    * Out of Scope: What related features or enhancements are explicitly not part of this phase?
+>  * Identify Edge Cases & Assumptions: Highlight potential blind spots or vague terms (e.g., words like "seamless", "fast", or "automated") and ask the user to clarify what those mean in operational terms.
+>  * Incremental Drafts: As the user answers your questions, update and present a draft of the document using standard Markdown formatting.
+>  * Export Ready: Once all core sections are populated and the user confirms they are satisfied, output the final, complete Markdown file with a table of contents and clear section headers.
+> 
+Standard Markdown BRD Template to Include in References
+Upload or link a Markdown file in the Notebook’s references so Copilot follows a predictable layout:
+# Business Requirements Document: [Project/Feature Name]
+
+## 1. Executive Summary & Context
+* **Problem Statement:** 
+* **Target Audience/Users:** 
+* **Business Impact:** 
+
+## 2. Core Functional Requirements
+| ID | User Role | Action / Feature | Business Rule / Logic | Acceptance Criteria |
+|---|---|---|---|---|
+| REQ-01 | ... | ... | ... | ... |
+
+## 3. Workflow & Logic
+* **Happy Path:**
+* **Exception/Error Handling:**
+
+## 4. Constraints & Dependencies
+* **Out of Scope for Phase 1:**
+* **Key Assumptions:**
+* **Data Privacy / Compliance Requirements:**
+
+## 5. Success Metrics & KPIs
+* [ ] Metric 1
+* [ ] Metric 2
+
+Recommended Workflow for Business Users
+ * Set up a Centralized "Requirements Lab" Notebook: Pre-load it with your Markdown template, custom instructions, and examples of high-quality past requirements.
+ * Share the Notebook link: Instruct business leads to open the Notebook whenever they have a new initiative.
+ * Drafting Phase: The business lead pastes their preliminary idea into the chat, answers Copilot's clarifying prompts, and generates the final structured Markdown text.
+ * Handoff: They export or copy the finished Markdown direct to your ticketing system (e.g., Jira, Azure DevOps, or GitHub).
